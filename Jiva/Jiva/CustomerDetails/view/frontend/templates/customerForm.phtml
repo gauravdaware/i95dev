@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+<div>
+        <fieldset>
+            <form data-mage-init='{"validation": {}}' action="<?php echo $block->getBaseUrl() . $block->getFormAction() ?>" method="post" enctype="multipart/form-data">
+                <dt>First Name</dt>
+                <dd><input data-validate='{"required":true,"letters-only":true}' type="text" name="fname"></dd>
+                <dt>Last Name</dt>
+                <dd><input data-validate='{"required":true,"letters-only":true}' type="text" name="lname"></dd>
+                <dt>Email</dt>
+                <dd><input data-validate='{"required":true, "email":true}' type="text" name="email"></dd>
+                <dt>Gender</dt>
+                <dd>
+                    <select name="gender" id="gender">
+                        <option value="male" selected>Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </dd>
+                <dt>Date of Birth</dt>
+                <dd><input data-validate='{"required":true}' type="date" name="dob"></dd>
+                <dt>Upload Photo</dt>
+                <dd><input data-validate='{"required":true}' type="file" name="image" id="image"></dd>
+                <input type="hidden" name="form_key" title="<?php /* @escapeNotVerified */ echo __('image') ?>" value="<?php  echo $block->getFormKey() ?>" />
+                <button type="submit" name="submit">Submit</button>
+            </form>
+        </fieldset>
+    </div>
+</body>
+</html>

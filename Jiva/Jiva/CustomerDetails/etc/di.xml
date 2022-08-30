@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Jiva\CustomerDetails\Api\CustomerInfoRepositoryInterface" type="Jiva\CustomerDetails\Model\CustomerInfoRepository"/>
+	<preference for="Jiva\CustomerDetails\Api\Data\CustomerInfoInterface" type="Jiva\CustomerDetails\Model\Data\CustomerInfo"/>
+	<preference for="Jiva\CustomerDetails\Api\Data\CustomerInfoSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Jiva\CustomerDetails\Model\ResourceModel\CustomerInfo\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">jiva_customerdetails_customerinfo</argument>
+			<argument name="resourceModel" xsi:type="string">Jiva\CustomerDetails\Model\ResourceModel\CustomerInfo\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="jiva_customerdetails_customerinfo_listing_data_source" xsi:type="string">Jiva\CustomerDetails\Model\ResourceModel\CustomerInfo\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+	<type name="Jiva\CustomerDetails\Model\ImageUploader">
+    <arguments>
+        <!-- Temporary file stored in pub/media/faq/tmp/icon -->
+        <argument name="baseTmpPath" xsi:type="string">jiva/tmp/icon</argument>
+        <argument name="basePath" xsi:type="string">jiva/icon</argument>
+        <argument name="allowedExtensions" xsi:type="array">
+            <item name="jpg" xsi:type="string">jpg</item>
+            <item name="jpeg" xsi:type="string">jpeg</item>
+            <item name="gif" xsi:type="string">gif</item>
+            <item name="png" xsi:type="string">png</item>
+        </argument>
+    </arguments>
+</type>
+   <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+       <plugin name="checkout_custom_shipping_fields" type="Jiva\CustomerDetails\Plugin\Checkout\LayoutProcessorPlugin" sortOrder="10"/>
+   </type>
+   <type name="Magento\Checkout\Model\ShippingInformationManagement">
+      <plugin name="save_to_quote_table" type="Jiva\CustomerDetails\Plugin\Quote\SaveToQuote" sortOrder="10"/>
+   </type>
+</config>

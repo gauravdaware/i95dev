@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Jiva::top_level" module="Jiva_CustomerDetails" resource="Magento_Backend::content" sortOrder="9999" title="Jiva"/>
+		<add action="jiva_customerdetails/customerinfo/index" id="Jiva_CustomerDetails::jiva_customerdetails_customerinfo" module="Jiva_CustomerDetails" parent="Jiva::top_level" resource="Magento_Backend::content" sortOrder="9999" title="Customer Info"/>
+	</menu>
+</config>
